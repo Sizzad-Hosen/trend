@@ -2,8 +2,8 @@ let showAll = false;
 
 const loadTrend=async()=>{
 
-    const url =`https://openapi.programming-hero.com/api/ai/tools`
-  
+    const url =`https://openapi.programming-hero.com/api/ai/tools`;
+  console.log(url);
     try{
 
         const res = await fetch(url);
@@ -126,6 +126,7 @@ displayedData.forEach(tool => {
         }
     }
 //  // ??????
+
     const displayDetails = (data)=>{
        const modal= document.getElementById('trendExample') ;
        modal.innerHTML =`${data.name}`;
