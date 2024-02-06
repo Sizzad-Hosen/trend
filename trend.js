@@ -59,7 +59,7 @@ displayedData.forEach(tool => {
                 <h5 class="card-title"> <b> ${tool.name} </b> </h5>
                 <small class="text-body-secondary"><i class="fa-solid fa-calendar-check"></i> 11/01/2022</small>
 
-                <button onclick="loadDetails(${tool.id})"  type="button" class=" p-2 btn btn-primary " data-bs-toggle="modal" data-bs-target="#trendModal">
+                <button onclick="loadDetails('${tool.id}')"  type="button" class=" p-2 btn btn-primary " data-bs-toggle="modal" data-bs-target="#trendModal">
     Details
   </button>
                 </div>
@@ -105,10 +105,11 @@ displayedData.forEach(tool => {
        }
 
        const loadDetails =( search) => {
+        console.log(search)
         const url =`https://openapi.programming-hero.com/api/ai/tool/${search}`;
         fetch(url)
         .then(res=>res.json())
-        .then(data=>displayDetails(data))
+        .then(data=>displayDetails(data.data))
         // console.log(idMeal);
        }
       
@@ -128,13 +129,14 @@ displayedData.forEach(tool => {
 //  // ??????
 
     const displayDetails = (data)=>{
+        console.log(data)
        const modal= document.getElementById('trendExample') ;
-       modal.innerHTML =`${data.name}`;
+       modal.innerHTML =`${data.tool_name}`;
 
         const trendDetails = document.getElementById('trendBody');
 
         trendDetails.innerHTML =`
-        <img class="img-fluid" src="${data.image}">
+        <img class="img-fluid" src="${data.image_link[0]}">
         `
         // console.log(data.tool.name);
 
